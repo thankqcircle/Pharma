@@ -28,7 +28,7 @@ export default function WhyChoose() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-12">
           <h6 className="text-primary font-heading font-bold text-lg mb-3 uppercase tracking-wide">Why Choose</h6>
-          <p className="text-gray-200 text-lg leading-relaxed">
+          <p className="text-black text-lg leading-relaxed">
             Tarokem Pharmaceuticals champions sustainable healthcare with eco-friendly practices and ethical sourcing. Our innovative research ensures safe, high-quality pharmaceutical solutions for a healthier future.
           </p>
         </div>

@@ -224,6 +224,6 @@ export const contactInfo = {
   email: 'sales@tarokempharma.com',
 };
 
-export const logoUrl = '/images/logo.png';
-export const footerLogoUrl = '/images/logo.png';
+export const logoUrl = '/images/logo_blue.png';
+export const footerLogoUrl = '/images/logo_blue.png';
 export const aboutImageUrl = 'https://consiapharma.in/assets/images/resource/about-pharma.jpg';

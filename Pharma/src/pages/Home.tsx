@@ -67,7 +67,7 @@ function HeroSlider() {
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-white leading-tight mb-6 text-balance">
                     {slide.title}
                   </h1>
-                  <p className="text-gray-200 text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+                  <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
                     {slide.description}
                   </p>
                   <Link
