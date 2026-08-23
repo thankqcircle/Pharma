@@ -15,13 +15,13 @@ function HeroSlider() {
       setCurrent((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [current]);
 
   const goTo = (index: number) => setCurrent((index + heroSlides.length) % heroSlides.length);
 
   return (
     <section
-      className="relative min-h-[90vh] flex items-center overflow-hidden"
+      className="relative min-h-[90vh] flex items-center overflow-hidden pt-24 pb-12"
       style={{ background: 'linear-gradient(-90deg, #2e1a99, #160b52 100%)' }}
     >
       {/* Decorative shapes */}
@@ -30,40 +30,65 @@ function HeroSlider() {
         <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-white/5 blur-3xl animate-spin-slow" style={{ animationDirection: 'reverse' }} />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 pb-12">
-        {heroSlides.map((slide, i) => (
-          <div
-            key={i}
-            className={`transition-all duration-1000 ${
-              i === current ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'
-            }`}
-          >
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="relative">
+          {/* Height spacer keeps the slide track tall enough for absolutely positioned slides */}
+          <div className="invisible">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className={`text-center lg:text-left ${i === current ? 'animate-slide-in-left' : ''}`}>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-white leading-tight mb-6 text-balance">
-                  {slide.title}
+              <div className="text-center lg:text-left">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold leading-tight mb-6 text-balance">
+                  {heroSlides[0].title}
                 </h1>
-                <p className="text-gray-200 text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-                  {slide.description}
+                <p className="text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+                  {heroSlides[0].description}
                 </p>
-                <Link
-                  to="/products"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-600 text-white font-heading font-semibold rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 group"
-                >
+                <span className="inline-flex items-center gap-2 px-8 py-4 font-heading font-semibold rounded-lg">
                   Explore Our Products
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </span>
               </div>
-              <div className={`flex justify-center ${i === current ? 'animate-slide-in-right' : ''}`}>
-                <img
-                  src={slide.image}
-                  alt={slide.alt}
-                  className="max-h-[400px] md:max-h-[500px] object-contain drop-shadow-2xl"
-                />
+              <div className="flex justify-center">
+                <img src={heroSlides[0].image} alt="" className="max-h-[400px] md:max-h-[500px] object-contain" />
               </div>
             </div>
           </div>
-        ))}
+
+          {heroSlides.map((slide, i) => (
+            <div
+              key={i}
+              className="absolute inset-0 transition-all duration-700 ease-in-out"
+              style={{
+                opacity: i === current ? 1 : 0,
+                transform: i === current ? 'translateX(0)' : `translateX(${(i - current) * 40}px)`,
+                pointerEvents: i === current ? 'auto' : 'none',
+              }}
+            >
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="text-center lg:text-left">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-white leading-tight mb-6 text-balance">
+                    {slide.title}
+                  </h1>
+                  <p className="text-gray-200 text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+                    {slide.description}
+                  </p>
+                  <Link
+                    to="/products"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-600 text-white font-heading font-semibold rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 group"
+                  >
+                    Explore Our Products
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+                <div className="flex justify-center">
+                  <img
+                    src={slide.image}
+                    alt={slide.alt}
+                    className="max-h-[400px] md:max-h-[500px] object-contain drop-shadow-2xl"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Left arrow */}
