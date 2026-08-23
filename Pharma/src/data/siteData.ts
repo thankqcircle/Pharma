@@ -4,6 +4,7 @@ export interface Product {
   alt: string;
 }
 
+
 export const products: Product[] = [
   {
     name: 'Taropan DSR',
