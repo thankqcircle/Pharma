@@ -40,11 +40,11 @@
   background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #22b6af;
+  background: #2e1a99;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #1b918c;
+  background: #25157b;
 }
 
 /* Hide scrollbar for brand ticker */

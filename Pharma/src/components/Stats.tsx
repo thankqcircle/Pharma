@@ -41,7 +41,7 @@ export default function Stats() {
       className="relative py-20 bg-cover bg-center bg-fixed"
       style={{ backgroundImage: 'url(https://consiapharma.in/assets/images/background/funfact-1.jpg)' }}
     >
-      <div className="absolute inset-0 bg-[#06194b]/85" />
+      <div className="absolute inset-0 bg-[#160b52]/85" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat) => (

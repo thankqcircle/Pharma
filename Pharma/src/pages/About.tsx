@@ -55,7 +55,7 @@ function ValuesSection() {
   ];
 
   return (
-    <section className="py-20" style={{ backgroundColor: '#e9f8f8' }}>
+    <section className="py-20" style={{ backgroundColor: '#f1eefb' }}>
       <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8">
           {values.map((v, i) => (
@@ -119,7 +119,7 @@ function WorkProcess() {
   ];
 
   return (
-    <section className="py-20" style={{ backgroundColor: '#e9f8f8' }}>
+    <section className="py-20" style={{ backgroundColor: '#f1eefb' }}>
       <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h6 className="text-primary font-heading font-bold text-lg uppercase tracking-wide mb-2">Work Process</h6>

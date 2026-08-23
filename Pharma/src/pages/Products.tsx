@@ -19,7 +19,7 @@ function ProductGrid() {
   }, [page, totalPages]);
 
   return (
-    <section className="py-24" style={{ backgroundColor: '#cde7e7' }}>
+    <section className="py-24" style={{ backgroundColor: '#e5e0f7' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h6 className="text-primary font-heading font-bold text-lg uppercase tracking-wide mb-2">Featured Products</h6>
@@ -84,7 +84,7 @@ function ProductGrid() {
 
 function CTASection() {
   return (
-    <section className="py-20" style={{ backgroundColor: '#06194b' }}>
+    <section className="py-20" style={{ backgroundColor: '#160b52' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-2xl md:text-4xl font-heading font-extrabold text-white leading-tight max-w-4xl mx-auto">
           Our products are made in high-tech facilities that have been selected and audited to meet international standards (WHO-cGMP Certified)

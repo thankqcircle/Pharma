@@ -22,7 +22,7 @@ function HeroSlider() {
   return (
     <section
       className="relative min-h-[90vh] flex items-center overflow-hidden"
-      style={{ background: 'linear-gradient(-90deg, #0d7a83, #162a41 100%)' }}
+      style={{ background: 'linear-gradient(-90deg, #2e1a99, #160b52 100%)' }}
     >
       {/* Decorative shapes */}
       <div className="absolute inset-0 overflow-hidden">
@@ -144,7 +144,7 @@ function ProductsSection() {
   const { ref, inView } = useInView<HTMLDivElement>();
 
   return (
-    <section className="py-24" style={{ backgroundColor: '#cde7e7' }}>
+    <section className="py-24" style={{ backgroundColor: '#e5e0f7' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-gray-900 mb-4">
@@ -197,7 +197,7 @@ function VideoSection() {
       className="relative py-32 bg-cover bg-center bg-fixed"
       style={{ backgroundImage: 'url(https://consiapharma.in/assets/images/background/parallax-img.jpg)' }}
     >
-      <div className="absolute inset-0 bg-[#06194b]/60" />
+      <div className="absolute inset-0 bg-[#160b52]/60" />
       <div className="relative flex items-center justify-center">
         <a
           href="https://youtu.be/_8h1HBDJ__c?si=YuLGYXB5WPxE7oNn"
@@ -215,7 +215,7 @@ function VideoSection() {
 
 function CTASection() {
   return (
-    <section className="py-20" style={{ backgroundColor: '#06194b' }}>
+    <section className="py-20" style={{ backgroundColor: '#160b52' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-2xl md:text-4xl font-heading font-extrabold text-white leading-tight max-w-4xl mx-auto">
           Our products are made in high-tech facilities that have been selected and audited to meet international standards (WHO-cGMP Certified)
