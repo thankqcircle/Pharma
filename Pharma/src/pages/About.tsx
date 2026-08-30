@@ -90,7 +90,7 @@ function ValuesSection() {
         {/* Tagline Banner */}
         <div className="max-w-4xl mx-auto bg-gradient-to-r from-primary to-primary-700 text-white p-8 md:p-10 rounded-2xl shadow-xl text-center">
           <p className="text-xl md:text-2xl font-heading font-bold tracking-wide">
-            15 Years of Experience. One Purpose — Better Therapies. Better Health.
+            15 Years of Experience. One Purpose — Better Therapies. <span className="text-emerald-400 font-extrabold">Better Health.</span>
           </p>
         </div>
       </div>
