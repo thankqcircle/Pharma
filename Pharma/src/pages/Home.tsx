@@ -154,6 +154,24 @@ function HeroSlider() {
         </div>
       </div>
 
+      {/* Left arrow (Desktop only) */}
+      <button
+        onClick={() => goTo(current - 1)}
+        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/35 hover:bg-primary text-white items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300 hover:scale-110 shadow-lg"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+
+      {/* Right arrow (Desktop only) */}
+      <button
+        onClick={() => goTo(current + 1)}
+        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/35 hover:bg-primary text-white items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300 hover:scale-110 shadow-lg"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
       {/* Dots */}
       <div className="absolute bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-10">
         {heroSlides.map((_, i) => (
