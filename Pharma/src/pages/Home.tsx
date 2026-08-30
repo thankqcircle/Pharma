@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Play, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { heroSlides, products, aboutImageUrl } from '@/data/siteData';
 import { useInView } from '@/hooks/useInView';
 import WhyChoose from '@/components/WhyChoose';
@@ -286,28 +286,6 @@ function ProductsSection() {
   );
 }
 
-function VideoSection() {
-  return (
-    <section
-      className="relative py-32 bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: 'url(https://consiapharma.in/assets/images/background/parallax-img.jpg)' }}
-    >
-      <div className="absolute inset-0 bg-[#160b52]/60" />
-      <div className="relative flex items-center justify-center">
-        <a
-          href="https://youtu.be/_8h1HBDJ__c?si=YuLGYXB5WPxE7oNn"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group relative flex items-center justify-center w-24 h-24 rounded-full bg-primary/90 hover:bg-primary transition-colors duration-500"
-        >
-          <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" />
-          <Play className="w-10 h-10 text-white ml-1" fill="white" />
-        </a>
-      </div>
-    </section>
-  );
-}
-
 function CTASection() {
   return (
     <section className="py-20" style={{ backgroundColor: '#160b52' }}>
@@ -327,7 +305,6 @@ export default function Home() {
       <AboutSection />
       <ProductsSection />
       <WhyChoose />
-      <VideoSection />
       <Stats />
       <BrandTicker />
       <CTASection />
