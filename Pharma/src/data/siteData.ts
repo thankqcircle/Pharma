@@ -93,8 +93,8 @@ export interface Slide {
 
 export const heroSlides: Slide[] = [
   {
-    title: '',
-    description: '',
+    title: 'Driven by 15 Years of Pharmaceutical Excellence',
+    description: 'Bringing better therapies, trusted quality, and meaningful healthcare solutions across key therapeutic areas.',
     bgImage: '/images/betterTheaptyBanner.png',
     bgImageMobile: '/images/betterTheaptyBanner_p.png',
     alt: 'Better Therapies, Better Health - Tarokem Pharmaceuticals',

@@ -47,7 +47,7 @@ function HeroSlider() {
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
-      className="relative w-full aspect-[2/3] md:aspect-[2/1] min-h-[480px] md:max-h-[760px] flex items-center overflow-hidden touch-pan-y"
+      className="relative w-full min-h-[580px] landscape:min-h-[380px] sm:min-h-[440px] md:aspect-[2/1] md:min-h-[480px] md:max-h-[760px] flex items-center overflow-hidden touch-pan-y py-4 md:py-0"
       style={{ background: 'linear-gradient(-90deg, #2e1a99, #160b52 100%)' }}
     >
       {/* Background image layer for slides with bgImage */}
@@ -62,12 +62,12 @@ function HeroSlider() {
           >
             <picture className="w-full h-full block">
               {slide.bgImageMobile && (
-                <source media="(max-width: 767px)" srcSet={slide.bgImageMobile} />
+                <source media="(max-width: 767px) and (orientation: portrait)" srcSet={slide.bgImageMobile} />
               )}
               <img
                 src={slide.bgImage}
                 alt={slide.alt || 'Banner'}
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-top sm:object-center"
               />
             </picture>
             {/* Subtle gradient overlay for contrast on text */}
@@ -87,20 +87,20 @@ function HeroSlider() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
         <div className="relative">
           {/* Height spacer keeps the slide track tall enough for absolutely positioned slides */}
-          <div className="invisible" aria-hidden="true">
-            <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[380px] md:min-h-[500px]">
+          <div className="invisible pointer-events-none" aria-hidden="true">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 items-center py-4 md:py-8">
               <div className="text-center lg:text-left">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold leading-tight mb-6 text-balance">
+                <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-heading font-extrabold leading-snug md:leading-tight mb-2 sm:mb-3 md:mb-6 text-balance">
                   {heroSlides[1]?.title || 'Wellness Solutions'}
                 </h1>
-                <p className="text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+                <p className="text-xs sm:text-sm md:text-lg leading-relaxed mb-3 sm:mb-4 md:mb-8 max-w-xl mx-auto lg:mx-0">
                   {heroSlides[1]?.description || ''}
                 </p>
-                <span className="inline-flex items-center gap-2 px-8 py-4 font-heading font-semibold rounded-lg">
+                <span className="inline-flex items-center gap-2 px-4 py-2 sm:px-8 sm:py-3.5 text-xs sm:text-base font-heading font-semibold rounded-lg">
                   Explore Our Products
                 </span>
               </div>
-              <div className="flex justify-center min-h-[350px] md:min-h-[450px]">
+              <div className="flex justify-center h-[130px] sm:h-[220px] md:h-[450px]">
               </div>
             </div>
           </div>
@@ -108,7 +108,7 @@ function HeroSlider() {
           {heroSlides.map((slide, i) => (
             <div
               key={i}
-              className="absolute inset-0 transition-all duration-700 ease-in-out flex items-center"
+              className="absolute inset-0 transition-all duration-700 ease-in-out flex items-center justify-center"
               style={{
                 opacity: i === current ? 1 : 0,
                 transform: i === current ? 'translateX(0)' : `translateX(${(i - current) * 40}px)`,
@@ -116,31 +116,31 @@ function HeroSlider() {
               }}
             >
               {slide.title ? (
-                <div className={`w-full grid ${slide.image ? 'lg:grid-cols-2 gap-12 items-center' : 'grid-cols-1 max-w-2xl'}`}>
-                  <div className="text-center lg:text-left">
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-white leading-tight mb-6 text-balance drop-shadow-md">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center">
+                  <div className="text-center sm:text-left">
+                    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-extrabold text-white leading-snug md:leading-tight mb-2 sm:mb-3 md:mb-5 text-balance drop-shadow-lg">
                       {slide.title}
                     </h1>
-                    <p className="text-gray-100 text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0 drop-shadow">
+                    <p className="text-gray-100 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed mb-3 sm:mb-4 md:mb-6 max-w-lg mx-auto sm:mx-0 drop-shadow-md line-clamp-2 sm:line-clamp-3 md:line-clamp-none">
                       {slide.description}
                     </p>
                     <Link
                       to="/products"
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-600 text-white font-heading font-semibold rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 group"
+                      className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 md:px-7 md:py-3 text-xs sm:text-sm md:text-base bg-primary hover:bg-primary-600 text-white font-heading font-semibold rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 group"
                     >
                       Explore Our Products
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
-                  {slide.image && (
-                    <div className="flex justify-center">
+                  <div className="flex justify-center">
+                    {slide.image && (
                       <img
                         src={slide.image}
                         alt={slide.alt || ''}
-                        className="max-h-[400px] md:max-h-[500px] object-contain rounded-2xl drop-shadow-2xl"
+                        className="max-h-[130px] sm:max-h-[200px] md:max-h-[450px] object-contain rounded-2xl drop-shadow-2xl"
                       />
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               ) : (
                 <Link
