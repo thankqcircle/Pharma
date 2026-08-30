@@ -9,45 +9,98 @@ import BrandTicker from '@/components/BrandTicker';
 
 function HeroSlider() {
   const [current, setCurrent] = useState(0);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+
+  const minSwipeDistance = 45;
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(timer);
   }, [current]);
 
   const goTo = (index: number) => setCurrent((index + heroSlides.length) % heroSlides.length);
 
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    const distance = touchStartX - touchEndX;
+    if (distance > minSwipeDistance) {
+      goTo(current + 1);
+    } else if (distance < -minSwipeDistance) {
+      goTo(current - 1);
+    }
+  };
+
   return (
     <section
-      className="relative min-h-[90vh] flex items-center overflow-hidden pt-24 pb-12"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      className="relative w-full aspect-[2/3] md:aspect-[2/1] min-h-[480px] md:max-h-[760px] flex items-center overflow-hidden touch-pan-y"
       style={{ background: 'linear-gradient(-90deg, #2e1a99, #160b52 100%)' }}
     >
+      {/* Background image layer for slides with bgImage */}
+      {heroSlides.map((slide, i) =>
+        slide.bgImage ? (
+          <div
+            key={`bg-${i}`}
+            className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+            style={{
+              opacity: i === current ? 1 : 0,
+            }}
+          >
+            <picture className="w-full h-full block">
+              {slide.bgImageMobile && (
+                <source media="(max-width: 767px)" srcSet={slide.bgImageMobile} />
+              )}
+              <img
+                src={slide.bgImage}
+                alt={slide.alt || 'Banner'}
+                className="w-full h-full object-cover object-center"
+              />
+            </picture>
+            {/* Subtle gradient overlay for contrast on text */}
+            {slide.title ? (
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-950/85 via-gray-950/40 to-transparent" />
+            ) : null}
+          </div>
+        ) : null
+      )}
+
       {/* Decorative shapes */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-primary/10 blur-3xl animate-spin-slow" />
         <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-white/5 blur-3xl animate-spin-slow" style={{ animationDirection: 'reverse' }} />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
         <div className="relative">
           {/* Height spacer keeps the slide track tall enough for absolutely positioned slides */}
-          <div className="invisible">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="invisible" aria-hidden="true">
+            <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[380px] md:min-h-[500px]">
               <div className="text-center lg:text-left">
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold leading-tight mb-6 text-balance">
-                  {heroSlides[0].title}
+                  {heroSlides[1]?.title || 'Wellness Solutions'}
                 </h1>
                 <p className="text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-                  {heroSlides[0].description}
+                  {heroSlides[1]?.description || ''}
                 </p>
                 <span className="inline-flex items-center gap-2 px-8 py-4 font-heading font-semibold rounded-lg">
                   Explore Our Products
                 </span>
               </div>
-              <div className="flex justify-center">
-                <img src={heroSlides[0].image} alt="" className="max-h-[400px] md:max-h-[500px] object-contain" />
+              <div className="flex justify-center min-h-[350px] md:min-h-[450px]">
               </div>
             </div>
           </div>
@@ -55,62 +108,54 @@ function HeroSlider() {
           {heroSlides.map((slide, i) => (
             <div
               key={i}
-              className="absolute inset-0 transition-all duration-700 ease-in-out"
+              className="absolute inset-0 transition-all duration-700 ease-in-out flex items-center"
               style={{
                 opacity: i === current ? 1 : 0,
                 transform: i === current ? 'translateX(0)' : `translateX(${(i - current) * 40}px)`,
                 pointerEvents: i === current ? 'auto' : 'none',
               }}
             >
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div className="text-center lg:text-left">
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-white leading-tight mb-6 text-balance">
-                    {slide.title}
-                  </h1>
-                  <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-                    {slide.description}
-                  </p>
-                  <Link
-                    to="/products"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-600 text-white font-heading font-semibold rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 group"
-                  >
-                    Explore Our Products
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+              {slide.title ? (
+                <div className={`w-full grid ${slide.image ? 'lg:grid-cols-2 gap-12 items-center' : 'grid-cols-1 max-w-2xl'}`}>
+                  <div className="text-center lg:text-left">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-white leading-tight mb-6 text-balance drop-shadow-md">
+                      {slide.title}
+                    </h1>
+                    <p className="text-gray-100 text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0 drop-shadow">
+                      {slide.description}
+                    </p>
+                    <Link
+                      to="/products"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-600 text-white font-heading font-semibold rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 group"
+                    >
+                      Explore Our Products
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                  {slide.image && (
+                    <div className="flex justify-center">
+                      <img
+                        src={slide.image}
+                        alt={slide.alt || ''}
+                        className="max-h-[400px] md:max-h-[500px] object-contain rounded-2xl drop-shadow-2xl"
+                      />
+                    </div>
+                  )}
                 </div>
-                <div className="flex justify-center">
-                  <img
-                    src={slide.image}
-                    alt={slide.alt}
-                    className="max-h-[400px] md:max-h-[500px] object-contain drop-shadow-2xl"
-                  />
-                </div>
-              </div>
+              ) : (
+                <Link
+                  to="/products"
+                  className="w-full h-full block cursor-pointer"
+                  aria-label={slide.alt || 'Explore Our Products'}
+                />
+              )}
             </div>
           ))}
         </div>
       </div>
 
-      {/* Left arrow */}
-      <button
-        onClick={() => goTo(current - 1)}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-primary text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300 hover:scale-110"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </button>
-
-      {/* Right arrow */}
-      <button
-        onClick={() => goTo(current + 1)}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-primary text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-300 hover:scale-110"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="w-6 h-6" />
-      </button>
-
       {/* Dots */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+      <div className="absolute bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-10">
         {heroSlides.map((_, i) => (
           <button
             key={i}
@@ -134,29 +179,36 @@ function AboutSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div ref={ref} className={`space-y-6 ${inView ? 'animate-slide-in-left' : 'opacity-0'}`}>
-            <h6 className="text-primary font-heading font-bold text-lg uppercase tracking-wide">About Us</h6>
-            <p className="text-gray-700 text-lg leading-relaxed">
-              At Tarokem Pharmaceuticals, based in Navi Mumbai, Maharashtra, India, we specialize in providing innovative, high-quality nutraceuticals and functional food solutions. Our mission is to deliver scientifically backed healthcare products that promote better health and well-being.
+            <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-heading font-semibold text-sm uppercase tracking-wider">
+              About Us
+            </div>
+            <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-gray-900 leading-tight">
+              Driven by 15 Years of Pharmaceutical Experience
+            </h2>
+            <p className="text-gray-700 text-lg leading-relaxed font-medium">
+              Built on 15 years of experience in the pharmaceutical industry, Tarokem Pharmaceuticals was founded with a clear vision—to bring better therapies, trusted quality, and meaningful healthcare solutions to patients and healthcare professionals.
             </p>
             <p className="text-gray-600 leading-relaxed">
-              At Tarokem, we prioritize excellence in research, development, and manufacturing, ensuring our products meet the highest standards of quality and compliance.
+              Over the years, our experience across the pharmaceutical sector has given us a strong understanding of evolving healthcare needs, medical science, product quality, and the importance of building lasting relationships with healthcare professionals.
             </p>
             <p className="text-gray-600 leading-relaxed">
-              With a focus on delivering impactful solutions, Tarokem Pharmaceuticals continues to expand its portfolio, forging a path toward better health and well-being for all.
+              Today, we are transforming that experience into a focused pharmaceutical company committed to delivering reliable, high-quality, and scientifically driven products across key therapeutic areas.
             </p>
-            <Link
-              to="/about"
-              className="inline-flex items-center gap-2 text-primary font-heading font-semibold hover:gap-3 transition-all"
-            >
-              Learn More <ArrowRight className="w-5 h-5" />
-            </Link>
+            <div className="pt-2">
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-600 text-white font-heading font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 group"
+              >
+                Learn More <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
           <div className={`relative ${inView ? 'animate-slide-in-right' : 'opacity-0'}`}>
             <div className="absolute -top-4 -left-4 w-full h-full border-4 border-primary/20 rounded-2xl" />
             <img
               src={aboutImageUrl}
-              alt="Tarokem Pharmaceuticals - Leading Nutraceutical and Functional Food Manufacturer in India"
-              className="relative rounded-2xl shadow-2xl w-full"
+              alt="Tarokem Pharmaceuticals - Driven by 15 Years of Pharmaceutical Experience"
+              className="relative rounded-2xl shadow-2xl w-full object-cover"
             />
           </div>
         </div>

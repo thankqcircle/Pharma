@@ -8,112 +8,57 @@ export interface Product {
 export const products: Product[] = [
   {
     name: 'Taropan DSR',
-    image: '/images/products/taropan-dsr-card.jpg',
-    alt: 'Taropan DSR pharmaceutical product',
-  },
-  {
-    name: 'Taropan DSR',
     image: '/images/products/taropan-dsr-plain.jpg',
-    alt: 'Taropan DSR pharmaceutical product logo',
-  },
-  {
-    name: 'Neurovida-LC',
-    image: '/images/products/neurovida-lc-card.jpg',
-    alt: 'Neurovida-LC neurological health product',
+    alt: 'Taropan DSR pharmaceutical product',
   },
   {
     name: 'Neurovida',
     image: '/images/products/neurovida-plain.jpg',
-    alt: 'Neurovida neurological health product logo',
-  },
-  {
-    name: 'Raberef DSR',
-    image: '/images/products/raberef-dsr-card.jpg',
-    alt: 'Raberef DSR pharmaceutical product',
+    alt: 'Neurovida neurological health product',
   },
   {
     name: 'Raberef DSR',
     image: '/images/products/raberef-dsr-plain.jpg',
-    alt: 'Raberef DSR pharmaceutical product logo',
-  },
-  {
-    name: 'Pregavida-MNT',
-    image: '/images/products/pregavida-mnt-card.jpg',
-    alt: 'Pregavida-MNT pharmaceutical product',
+    alt: 'Raberef DSR pharmaceutical product',
   },
   {
     name: 'Pregavida-MNT',
     image: '/images/products/pregavida-mnt-plain.jpg',
-    alt: 'Pregavida-MNT pharmaceutical product logo',
-  },
-  {
-    name: 'Esovida ITL DSR',
-    image: '/images/products/esovida-itl-dsr-card.jpg',
-    alt: 'Esovida ITL DSR pharmaceutical product',
+    alt: 'Pregavida-MNT pharmaceutical product',
   },
   {
     name: 'Esovida',
     image: '/images/products/esovida-plain.jpg',
-    alt: 'Esovida pharmaceutical product logo',
-  },
-  {
-    name: 'Bliss-D3',
-    image: '/images/products/bliss-d3-card.jpg',
-    alt: 'Bliss-D3 vitamin D3 softgels and nanoshots',
-  },
-  {
-    name: 'Bliss-D3',
-    image: '/images/products/bliss-d3-plain.jpg',
-    alt: 'Bliss-D3 vitamin D3 product logo',
+    alt: 'Esovida pharmaceutical product',
   },
   {
     name: 'Bliss-D3 60K',
     image: '/images/products/bliss-d3-60k-plain.jpg',
-    alt: 'Bliss-D3 60K vitamin D3 product logo',
-  },
-  {
-    name: 'Dolzida-SP',
-    image: '/images/products/dolzida-sp-card.jpg',
-    alt: 'Dolzida-SP pharmaceutical product',
+    alt: 'Bliss-D3 60K vitamin D3 product',
   },
   {
     name: 'Dolzida-SP',
     image: '/images/products/dolzida-sp-plain.jpg',
-    alt: 'Dolzida-SP pharmaceutical product logo',
-  },
-  {
-    name: 'Suhem',
-    image: '/images/products/suhem-card.jpg',
-    alt: 'Suhem pharmaceutical product',
+    alt: 'Dolzida-SP pharmaceutical product',
   },
   {
     name: 'Suhem',
     image: '/images/products/suhem-plain.jpg',
-    alt: 'Suhem pharmaceutical product logo',
-  },
-  {
-    name: 'Bilacys M',
-    image: '/images/products/bilacys-m-card.jpg',
-    alt: 'Bilacys M pharmaceutical product',
+    alt: 'Suhem pharmaceutical product',
   },
   {
     name: 'Bilacys M',
     image: '/images/products/bilacys-m-plain.jpg',
-    alt: 'Bilacys M pharmaceutical product logo',
-  },
-  {
-    name: 'Flupirock-P',
-    image: '/images/products/flupirock-p-card.jpg',
-    alt: 'Flupirock-P pharmaceutical product',
+    alt: 'Bilacys M pharmaceutical product',
   },
   {
     name: 'Flupirock',
     image: '/images/products/flupirock-plain.jpg',
-    alt: 'Flupirock pharmaceutical product logo',
+    alt: 'Flupirock pharmaceutical product',
   },
   {
     name: 'Gabavida-NT',
-    image: '/images/products/gabavida-nt-card.jpg',
+    image: '/images/products/gabavida-nt.png',
     alt: 'Gabavida-NT pharmaceutical product',
   },
 ];
@@ -125,26 +70,35 @@ export interface BrandTickerItem {
 
 export const brandTickerItems: BrandTickerItem[] = [
   { text: 'TAROPAN DSR', colorClass: 'text-primary' },
-  { text: 'NEUROVIDA-LC', colorClass: 'text-brand-red' },
+  { text: 'NEUROVIDA', colorClass: 'text-brand-red' },
   { text: 'RABEREF DSR', colorClass: 'text-primary' },
   { text: 'PREGAVIDA-MNT', colorClass: 'text-brand-seabukhthon' },
-  { text: 'ESOVIDA ITL DSR', colorClass: 'text-primary' },
-  { text: 'BLISS-D3', colorClass: 'text-brand-gold' },
+  { text: 'ESOVIDA', colorClass: 'text-primary' },
+  { text: 'BLISS-D3 60K', colorClass: 'text-brand-gold' },
   { text: 'DOLZIDA-SP', colorClass: 'text-brand-red' },
   { text: 'SUHEM', colorClass: 'text-brand-red' },
   { text: 'BILACYS M', colorClass: 'text-brand-seabukhthon' },
-  { text: 'FLUPIROCK-P', colorClass: 'text-primary' },
+  { text: 'FLUPIROCK', colorClass: 'text-primary' },
   { text: 'GABAVIDA-NT', colorClass: 'text-brand-seabukhthon' },
 ];
 
 export interface Slide {
   title: string;
   description: string;
-  image: string;
-  alt: string;
+  image?: string;
+  bgImage?: string;
+  bgImageMobile?: string;
+  alt?: string;
 }
 
 export const heroSlides: Slide[] = [
+  {
+    title: '',
+    description: '',
+    bgImage: '/images/betterTheaptyBanner.png',
+    bgImageMobile: '/images/betterTheaptyBanner_p.png',
+    alt: 'Better Therapies, Better Health - Tarokem Pharmaceuticals',
+  },
   {
     title: 'Wellness is Enthusiasm | Holistic Health & Vitality',
     description: 'Embrace positivity, passion, and energy for complete well-being beyond just physical health. Discover a healthier, happier you with our expert wellness solutions.',
@@ -195,7 +149,7 @@ export interface Stat {
 
 export const stats: Stat[] = [
   { icon: 'brain', value: 2, suffix: '+', label: 'Therapy Areas' },
-  { icon: 'shield', value: 18, suffix: '+', label: 'Products' },
+  { icon: 'shield', value: 11, suffix: '+', label: 'Products' },
   { icon: 'thumbs-up', value: 49, suffix: '+', label: 'Employees' },
   { icon: 'target', value: 3, suffix: '+', label: 'Operational States' },
 ];
@@ -213,15 +167,14 @@ export const jobs: Job[] = [
 ];
 
 export const footerProducts = [
-  'Taropan DSR', 'Neurovida-LC', 'Neurovida', 'Raberef DSR', 'Pregavida-MNT',
-  'Esovida ITL DSR', 'Esovida', 'Bliss-D3', 'Bliss-D3 60K', 'Dolzida-SP',
-  'Suhem', 'Bilacys M', 'Flupirock-P', 'Flupirock', 'Gabavida-NT',
+  'Taropan DSR', 'Neurovida', 'Raberef DSR', 'Pregavida-MNT',
+  'Esovida', 'Bliss-D3 60K', 'Dolzida-SP', 'Suhem', 'Bilacys M', 'Flupirock', 'Gabavida-NT',
 ];
 
 export const contactInfo = {
-  address: 'Unit No: 611, Reliables Pride Anand Nagar, Jogeshwari West, MUMBAI Maharashtra - 400 102',
-  phone: '+91 7569881289',
-  email: 'sales@tarokempharma.com',
+  address: 'H.No: 5-8-310 part, B N R Nagar, Hyderabad-500070, Telangana, INDIA.',
+  phone: '+91 9848808268',
+  email: 'sales@tarokem.com',
 };
 
 export const logoUrl = '/images/logo_blue.png';

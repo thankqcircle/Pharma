@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`sticky top-0 z-50 transition-all duration-500 ${
           scrolled
             ? 'bg-white shadow-lg py-2'
             : 'bg-white/95 py-3'
@@ -39,7 +39,7 @@ export default function Header() {
             <img
               src={logoUrl}
               alt="Tarokem Pharmaceuticals"
-              className={`transition-all duration-500 ${scrolled ? 'h-12' : 'h-16'}`}
+              className={`transition-all duration-500 w-auto object-contain ${scrolled ? 'h-12' : 'h-16'}`}
             />
           </Link>
 
@@ -96,7 +96,7 @@ export default function Header() {
           }`}
         >
           <div className="flex items-center justify-between p-5 border-b border-gray-100">
-            <img src={logoUrl} alt="Tarokem" className="h-12" />
+            <img src={logoUrl} alt="Tarokem" className="h-12 w-auto object-contain" />
             <button
               onClick={() => setMobileOpen(false)}
               className="p-2 text-gray-500 hover:text-primary"

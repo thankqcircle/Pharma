@@ -10,16 +10,21 @@ export default function Footer() {
           {/* Logo + Contact */}
           <div>
             <Link to="/" className="inline-block mb-6">
-              <img src={footerLogoUrl} alt="Tarokem Pharmaceuticals" className="h-16" />
+              <img src={footerLogoUrl} alt="Tarokem Pharmaceuticals" className="h-16 w-auto object-contain" />
             </Link>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <span className="leading-relaxed">{contactInfo.address}</span>
+                <span className="leading-relaxed">
+                  H.No: 5-8-310 part,<br />
+                  B N R Nagar,<br />
+                  Hyderabad-500070,<br />
+                  Telangana, INDIA.
+                </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                <a href={`tel:${contactInfo.phone}`} className="hover:text-primary transition-colors">
+                <a href={`tel:${contactInfo.phone.replace(/\s+/g, '')}`} className="hover:text-primary transition-colors">
                   {contactInfo.phone}
                 </a>
               </li>
@@ -88,7 +93,7 @@ export default function Footer() {
 
       <div className="border-t border-gray-200 py-6 text-center">
         <p className="text-sm">
-          <Link to="/" className="text-primary hover:underline">tarokem pharmaceuticals</Link>
+          <Link to="/" className="text-primary hover:underline font-medium">Tarokem Pharmaceuticals PVT LTD</Link>
           {' '}&copy; {new Date().getFullYear()} All Rights Reserved
         </p>
       </div>
